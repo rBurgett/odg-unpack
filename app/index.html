@@ -10,17 +10,46 @@
     <!--LINK REL="SHORTCUT ICON" HREF="images/favicon.ico"-->
 
     <!-- Bootstrap -->
-    <link href="bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 
     <!-- Our custom styles -->
     <!--link href="css/main.css" rel="stylesheet"-->
+    <style>
+        body {
+            background-color: #EDEDED;
+        }
+        h1, h4 {
+            margin: 0px;
+            padding: 0px;
+        }
+        p {
+            margin: 0px;
+            padding: 0px;
+        }
+        .dropDiv {
+            margin-top:10px;
+            background-color: #FFFFFF;
+            border-color: #AAAAAA;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 4px;
+            height: 130px;
+            cursor: default;
+        }
+    </style>
 
 </head>
-<body>
+<body style="padding:10px;">
 
-    <h1>Hi!</h1>
+    <h1 class="text-center">ODG Converter</h1>
+    <p><small>Drop an ODG in an it will be unpacked into a folder next to the ODG file. Drop in a folder and it will be packed into an ODG file.</small></p>
+    <p class="text-danger"><small>WARNING! The generated file or folder will overwrite any existing file or folder with the same name.</small></p>
+    <div id="js-dropDiv" class="dropDiv">
+        <h4 class="text-center" style="margin-top:50px;">Drop file/folder here</h4>
+    </div>
 
-    <script type="text/javascript" src="js/main.js"></script>ß
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 
 </body>
 </html>

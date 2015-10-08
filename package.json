@@ -2,7 +2,15 @@
   "name": "odg-unpack",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
+  "main": "./build/LiteracyStarter.html",
+  "nodejs": true,
+  "window": {
+    "toolbar": true,
+    "width": 300,
+    "height": 300
+  },
+  "main": "app/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
