@@ -109,11 +109,10 @@ $(document).ready(function() {
 
     document.addEventListener('drop', function(e) {
         e.preventDefault();
-        // console.log(e.target.id);
+
         if(e.target.id === 'js-dropDiv' || e.target.id === 'js-droppable') {
             var file = e.dataTransfer.files[0];
             var filePath = file.path;
-            // console.log('File path is', filePath);
 
             if(path.extname(filePath) === '.odg') {
                 unpackODG(filePath);
