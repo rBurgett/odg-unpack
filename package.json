@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "main": "./build/LiteracyStarter.html",
+  "main": "./app/index.html",
   "nodejs": true,
   "window": {
     "toolbar": false,
@@ -12,7 +12,8 @@
   },
   "main": "app/index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nw .",
+    "build": "grunt build"
   },
   "repository": {
     "type": "git",
