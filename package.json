@@ -7,7 +7,7 @@
   "nodejs": true,
   "window": {
     "toolbar": false,
-    "width": 300,
+    "width": 340,
     "height": 300
   },
   "main": "app/index.html",
