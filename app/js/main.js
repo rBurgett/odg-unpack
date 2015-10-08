@@ -130,4 +130,12 @@ $(document).ready(function() {
         e.stopPropagation();
         e.preventDefault();
     });
+    $('#js-droppable').on('dragenter', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+    });
+    $('#js-droppable').on('dragover', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+    });
 });
