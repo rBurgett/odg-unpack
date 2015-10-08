@@ -31,28 +31,43 @@ var unpackODG = function(filePath) {
 }
 var packODG = function(filePath) {
 
+    var removeClutter = function(folderPath) {
+        var items;
+        try {
+            items = fs.readdirSync(folderPath);
+        } catch(err) {
+            console.error(err);
+            alert(err.message);
+        }
+        _.each(items, function(item) {
+            var itemPath = path.join(folderPath, item);
+            if(item === '.DS_Store') {
+                try {
+                    fs.removeSync(itemPath);
+                } catch(err) {
+                    console.error(err);
+                    alert(err.message);
+                }
+            } else {
+                var itemStats;
+                try {
+                    itemStats = fs.statSync(itemPath);
+                } catch(err) {
+                    console.error(err);
+                    alert(err.message);
+                }
+                if(itemStats.isDirectory()) {
+                    removeClutter(itemPath);
+                }
+            }
+
+        });
+    };
+
     var dirPath = path.dirname(filePath);
     var fileName = path.basename(filePath);
 
-    var dirContents;
-
-    try {
-        dirContents = fs.readdirSync(filePath);
-    } catch (err) {
-        console.error(err);
-        alert(err.message);
-    }
-
-    _.each(dirContents, function(file) {
-        if(/\.DS_Store/.test(file)) {
-            try {
-                fs.removeSync(path.join(filePath, file));
-            } catch (err) {
-                console.error(err);
-                alert(err.message);
-            }
-        }
-    });
+    removeClutter(filePath);
 
     var outputPath = filePath + '.odg';
 
