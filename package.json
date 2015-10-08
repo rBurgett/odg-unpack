@@ -6,7 +6,7 @@
   "main": "./build/LiteracyStarter.html",
   "nodejs": true,
   "window": {
-    "toolbar": true,
+    "toolbar": false,
     "width": 300,
     "height": 300
   },
