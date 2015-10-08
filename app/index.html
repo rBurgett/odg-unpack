@@ -18,7 +18,7 @@
         body {
             background-color: #EDEDED;
         }
-        h1, h4 {
+        h1, h2, h3, h4 {
             margin: 0px;
             padding: 0px;
         }
@@ -36,11 +36,31 @@
             height: 130px;
             cursor: default;
         }
+        .success-alert {
+            position: fixed;
+            width: 150px;
+            /*height: 100px;*/
+            top: 50%;
+            margin-top: -51px;
+            left: 50%;
+            margin-left: -76px;
+            background-color: #FFF;
+            border-color: #AAAAAA;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 4px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            box-shadow: 4px 4px 8px 0px rgba(119,119,119,1);
+            opacity: 0;
+            -webkit-transition: opacity .5s;
+            transition: opacity .5s;
+        }
     </style>
 
 </head>
 <body style="padding:10px;">
-
+    <div id="js-successAlert" class="success-alert"><h2 class="text-center text-success">Success!</h2></div>
     <h1 class="text-center">ODG Converter</h1>
     <p><small>Drop an ODG in and it will be unpacked into a folder next to the ODG file. Drop in a folder and it will be packed into an ODG file.</small></p>
     <p class="text-danger"><small>WARNING! The generated file or folder will overwrite any existing file or folder with the same name.</small></p>

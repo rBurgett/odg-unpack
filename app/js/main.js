@@ -9,6 +9,19 @@ win.title = 'ODG Converter';
 
 win.focus();
 
+var showSuccess = function() {
+    $('#js-successAlert').css('display', 'block');
+    setTimeout(function() {
+        $('#js-successAlert').css('opacity', 1);
+        setTimeout(function() {
+            $('#js-successAlert').css('opacity', 0);
+            setTimeout(function() {
+                $('#js-successAlert').css('display', 'none');
+            }, 1000);
+        }, 2000);
+    }, 0);
+};
+
 var unpackODG = function(filePath) {
 
     var dirPath = path.dirname(filePath);
@@ -22,7 +35,7 @@ var unpackODG = function(filePath) {
     });
     unzipper.on('extract', function(log) {
         win.focus();
-        alert('Done!');
+        showSuccess();
     });
 
     unzipper.extract({
@@ -77,7 +90,7 @@ var packODG = function(filePath) {
 
     archive.on('finish', function() {
         win.focus();
-        alert('Done!');
+        showSuccess();
     });
 
     archive.on('error', function(err) {
