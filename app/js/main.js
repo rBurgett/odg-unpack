@@ -4,8 +4,8 @@ var path = require('path'),
     DecompressZip = require('decompress-zip');
 
 var win = nw.Window.get();
-win.title = 'ODF Converter';
-document.title = 'ODF Converter';
+win.title = 'OpenDocument Converter';
+document.title = 'OpenDocument Converter';
 
 win.focus();
 
@@ -25,7 +25,10 @@ var showSuccess = function() {
 var unpackODG = function(filePath) {
 
     var dirPath = path.dirname(filePath);
-    var folderName = path.basename(filePath, '.odg');
+    var folderName = path
+        .basename(filePath)
+        .replace(/\.\w{3}$/, '');
+    const unzipPath = path.join(dirPath, folderName);
 
     var unzipper = new DecompressZip(filePath);
 
@@ -39,10 +42,33 @@ var unpackODG = function(filePath) {
     });
 
     unzipper.extract({
-        path: path.join(dirPath, folderName)
+        path: unzipPath
     });
 };
 var packODG = function(filePath) {
+
+    let manifest;
+
+    try {
+        manifest = fs.readFileSync(path.join(filePath, 'META-INF', 'manifest.xml'), 'utf8');
+    } catch(err) {
+        alert(err.message);
+        return;
+    }
+
+    let ext;
+
+    if(/opendocument\.text/.test(manifest)) {
+        ext = 'odt';
+    } else if(/opendocument\.graphics/.test(manifest)) {
+        ext = 'odg';
+    } else if(/opendocument\.presentation/.test(manifest)) {
+        ext = 'odp';
+    } else if(/opendocument\.spreadsheet/.test(manifest)) {
+        ext = 'ods';
+    } else {
+        alert('Sorry! Only .odt, .odg, .odp, and .ods file can be packed.');
+    }
 
     var removeClutter = function(folderPath) {
         var items;
@@ -82,7 +108,7 @@ var packODG = function(filePath) {
 
     removeClutter(filePath);
 
-    var outputPath = filePath + '.odg';
+    var outputPath = filePath + `.${ext}`;
 
     var output = fs.createWriteStream(outputPath);
 
@@ -114,10 +140,28 @@ $(document).ready(function() {
             var file = e.dataTransfer.files[0];
             var filePath = file.path;
 
-            if(path.extname(filePath) === '.odg') {
+            const ext = path.extname(filePath);
+
+            let stats;
+
+            try {
+                stats = fs.statSync(filePath);
+            } catch(err) {
+                alert(err.message);
+                return;
+            }
+
+            if(
+                ext === '.odt' ||
+                ext === '.ods' ||
+                ext === '.odp' ||
+                ext === '.odg'
+            ) {
                 unpackODG(filePath);
-            } else {
+            } else if(stats.isDirectory()){
                 packODG(filePath);
+            } else {
+                alert('Sorry! Only .odt, .odg, .odp, and .ods file can be unpacked.');
             }
         }
     });
