@@ -29,3 +29,4 @@ build/Release
 /build/
 /cache/
 /build-temp/
+/build-scripts/cache

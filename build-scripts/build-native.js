@@ -16,8 +16,8 @@ fs.emptyDir(nativeBuildDir, function(err) {
             version: '0.14.3',
             buildDir: '../build',
             zip: false,
-            winIco: (platform === 'win32') ? './build/images/favicon.ico' : '',
-            macIcns: (platform === 'darwin') ? './build/images/literacy-starter.icns' : ''
+            winIco: (platform === 'win32') ? '../app/images/favicon.ico' : '',
+            macIcns: (platform === 'darwin') ? '../app/images/nw.icns' : ''
         });
 
         //Log stuff you want
