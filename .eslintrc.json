@@ -1,0 +1,29 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "extends": [
+        "eslint:recommended"
+    ],
+    "rules": {
+        "quotes": [1, "single", "avoid-escape"],
+        "no-console": 0,
+        "camelcase": 0,
+        "no-trailing-spaces": 0,
+        "no-loop-func": 0,
+        "no-unused-vars": 1,
+        "semi": 2
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "plugins": [],
+    "globals": {
+        "_": false,
+        "$": false,
+        "nw": false
+    }
+}

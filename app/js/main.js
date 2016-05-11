@@ -1,11 +1,11 @@
 var path = require('path'),
     fs = require('fs-extra'),
     archiver = require('archiver'),
-    DecompressZip = require('decompress-zip'),
-    gui = require('nw.gui');
+    DecompressZip = require('decompress-zip');
 
-var win = gui.Window.get();
-win.title = 'ODG Converter';
+var win = nw.Window.get();
+win.title = 'ODF Converter';
+document.title = 'ODF Converter';
 
 win.focus();
 
@@ -33,7 +33,7 @@ var unpackODG = function(filePath) {
         console.error(err);
         alert(err.message);
     });
-    unzipper.on('extract', function(log) {
+    unzipper.on('extract', function() {
         win.focus();
         showSuccess();
     });
@@ -41,7 +41,7 @@ var unpackODG = function(filePath) {
     unzipper.extract({
         path: path.join(dirPath, folderName)
     });
-}
+};
 var packODG = function(filePath) {
 
     var removeClutter = function(folderPath) {
@@ -77,8 +77,8 @@ var packODG = function(filePath) {
         });
     };
 
-    var dirPath = path.dirname(filePath);
-    var fileName = path.basename(filePath);
+    // var dirPath = path.dirname(filePath);
+    // var fileName = path.basename(filePath);
 
     removeClutter(filePath);
 
@@ -94,7 +94,7 @@ var packODG = function(filePath) {
     });
 
     archive.on('error', function(err) {
-        reject(err);
+        alert(err);
     });
 
     archive.pipe(output);
@@ -103,7 +103,7 @@ var packODG = function(filePath) {
 
     archive.finalize();
 
-}
+};
 
 $(document).ready(function() {
 
