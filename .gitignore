@@ -30,3 +30,4 @@ build/Release
 /cache/
 /build-temp/
 /build-scripts/cache
+/build-native
